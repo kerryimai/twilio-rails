@@ -1,0 +1,26 @@
+<div class='call-view-container'>
+  <%= image_tag 'city.jpg' %>
+
+  <ul class='call-list'>
+    <div class="header call-list-item">Call Activities</div>
+    <% @calls.each do |call| %>
+      <li class='call-list-item'>
+        <div class='call-item-cell caller-info'>
+          <%= call.caller.number %> <%= call_status(call.option, call.recording_url) %>
+          <span class='call-date-time'>
+            <%= call.created_at.strftime('%Y-%m-%d %I:%M:%S')%>
+          </span>
+        </div>
+        <div class='call-item-cell caller-country'>
+           <span class='country'><%= city_cap(call.caller.city)%>, <%= call.caller.state || 'NA'%>  </span>   <span class='via'> <%= call.caller.country || 'NA'%></span>
+        </div>
+        <div class='call-item-cell recording'>
+          <% if call.recording_url %>
+          <span class="url"><%= link_to record_copy(call.option), call.recording_url %></span>
+          <span class="duration">  for <%= call.recording_duration %> sec</span>
+          <% end %>
+        </div>
+      </li>
+    <% end -%>
+  </ul>
+</div>

@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20180403034059) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "recording_url"
+    t.string "call_sid"
     t.integer "recording_duration"
     t.string "option"
-    t.integer "receiver_id"
+    t.string "receiver", default: "--- []\n"
     t.integer "caller_id"
     t.index ["caller_id"], name: "index_calls_on_caller_id"
-    t.index ["receiver_id"], name: "index_calls_on_receiver_id"
   end
 
   create_table "users", force: :cascade do |t|

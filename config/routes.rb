@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  post 'twilio/voice' => 'twilio#voice'
-  get 'twilio/number' => 'twilio#number'
-  get 'twilio/voicemail' => 'twilio#voicemail'
-
+  resources :calls, only: [:index, :create]
+  get 'number' => 'calls#number'
+  get 'end_of_call' => 'calls#end_of_call'
 end

@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180403034059) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "calls", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -19,8 +22,7 @@ ActiveRecord::Schema.define(version: 20180403034059) do
     t.string "call_sid"
     t.integer "recording_duration"
     t.string "option"
-    t.string "receiver", default: "--- []\n"
-    t.integer "caller_id"
+    t.bigint "caller_id"
     t.index ["caller_id"], name: "index_calls_on_caller_id"
   end
 

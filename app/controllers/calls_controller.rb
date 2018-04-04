@@ -42,7 +42,7 @@ class CallsController < ApplicationController
   end
 
   def index
-    @calls = Call.all
+    @calls = Call.all || []
   end
 
   private

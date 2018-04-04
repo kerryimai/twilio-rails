@@ -38,7 +38,9 @@ class CallsController < ApplicationController
 
   def end_of_call
     @call.update(call_params)
-    head :ok
+    response = Twilio::TwiML::VoiceResponse.new
+    response.hangup
+    render :xml => response.to_xml
   end
 
   def index
